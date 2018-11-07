@@ -20,6 +20,8 @@ To allow patients/users to recieve medication from pharmacies without leaving th
 
 ### Sketch of Final Product
 
+[Signature and Passcode](https://utaus201810fsf3-ft.slack.com/files/UDAREUY0H/FDXKSKW9X/image_from_ios.jpg)
+
 ### APIs to Be Used
 - Google Maps API: to generate delivery time and possibly driver location status with map visual.
 - Slack API: for messaging (user to drive and vice/versa)
