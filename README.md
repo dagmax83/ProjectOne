@@ -14,7 +14,7 @@
 
 We are making a website where users can place prescription order pickups. After placement, runners can pick up the order and deliver it with their progress tracked using Google Maps API.
 
-## Mission: 
+#### Mission: 
 
 To allow patients/users to recieve medication from pharmacies without leaving their location while monitoring the delivery progress in real time. Also to enlist drivers to deliver said medication to patients/users for compensation. 
 
