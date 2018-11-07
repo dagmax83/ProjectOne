@@ -20,3 +20,11 @@ We are making a website where users can place prescription order pickups. After 
 Google Maps API
 
 ## Rough Breakdown of Task
+- Initial repo/file setup and git branches
+- Get API Key
+- Review API Doc and make sure it outputs what we are looking for
+- Design mockup for mobile, then desktop layouts.
+- Make task list
+- Implament task manager
+- Assign tasks to each member
+- Begin build
