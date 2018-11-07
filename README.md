@@ -20,7 +20,8 @@ To allow patients/users to recieve medication from pharmacies without leaving th
 
 ### Sketch of Final Product
 
-[Signature and Passcode](https://utaus201810fsf3-ft.slack.com/files/UDAREUY0H/FDXKSKW9X/image_from_ios.jpg)
+[Sketch One](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage1.jpg)
+[Signature and Passcode Sketch](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage2.jpg)
 
 ### APIs to Be Used
 - Google Maps API: to generate delivery time and possibly driver location status with map visual.
