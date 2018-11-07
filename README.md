@@ -21,7 +21,9 @@ To allow patients/users to recieve medication from pharmacies without leaving th
 ### Sketch of Final Product
 
 ### APIs to Be Used
-Google Maps API
+Google Maps API: to generate delivery time and possibly driver location status with map visual.
+Slack API: for messaging (user to drive and vice/versa)
+API for transactional purposes: TBA
 
 ## Rough Breakdown of Task
 - Initial repo/file setup and git branches
