@@ -5,8 +5,8 @@
 ### Team Members
 
 1. Austin Tuwiner - Project Manager, Apis
-2. Dagoberto Guerra - Front End/ Apis / Drawing Sketch
-3. Zac Seewald - Apis/Front End
+2. Dagoberto Guerra - Front End/ Apis 
+3. Zac Seewald - Apis/Front End/ Design Mockups
 4. Chighali - _____
 5. Kenneth Cena - _____
 
