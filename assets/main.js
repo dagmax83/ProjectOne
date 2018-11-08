@@ -64,12 +64,25 @@ database.ref().on("child_added", function(childSnapshot) {
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
 
+  var dropdown = 
+  `<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div>`;
+
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
+    $("<td>").append(dropdown),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
