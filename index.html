@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Pharmacy Delivery</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+  <style>
+    #employee-table th,
+    td {
+      display: inline-block;
+      width: 16.575%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Employee Tracker -->
+  <div class="container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron" style="background-color: black; color: white">
+      <h1 class="text-center">Pharmacy Management</h1>
+      <h3 class="text-center">View current orders or place your own.</h3>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <!-- Current Employees-->
+        <div class="card mb-4">
+          <div class="card-header">Current Employees</div>
+          <div class="card-body">
+            <table class="table table-sm table-hover" id='employee-table'>
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Delivery Address</th>
+                  <th scope="col">Perscription #</th>
+                  <th scope="col">Pharmacy Address</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Add Employee  -->
+        <div class="card mb-4">
+          <div class="card-header">Add Employee</div>
+          <div class="card-body">
+
+            <!-- Entry Form -->
+            <form>
+              <div class="form-group">
+                <label for="employee-name-input">Name</label>
+                <input class="form-control" id="name" placeholder="John Smith" type="text">
+              </div>
+              <div class="form-group">
+                <label for="role-input">Delivery Address</label>
+                <input class="form-control" id="delivery-address" placeholder="1234 Q St" type="text">
+              </div>
+              <div class="form-group">
+                <label for="start-input">Perscription #</label>
+                <input class="form-control" id="perscription-number" placeholder="123456" type="text">
+              </div>
+              <div class="form-group">
+                <label for="rate-input">Pharmacy Address</label>
+                <input class="form-control" id="pharmacy-address" placeholder="100 W Dean Keeton St" type="text">
+              </div>
+              <button class="btn btn-primary float-right" id="add-order-btn">Submit</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <script src="assets/main.js"></script>
+</body>
+</html>
