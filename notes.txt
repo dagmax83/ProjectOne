@@ -1,0 +1,29 @@
+General notes:
+
+3 min Presention
+
+
+
+Include:
+
+1. What is the target audience?
+
+	medical patients who want their meds delivered for various reasons 
+		(ex transportation, psychological, immobility issues)
+
+2. What problem that is solved?
+
+	medical prescription delivery system for those who cannot get their medication themselves
+
+3. What is the smallest version:
+
+	Gen 1:
+	user input fields = name, prescription number, pharmacy address, delivery address.
+	driver input = name, pickup status.
+	site functions = 
+		takes in user input;
+		takes in driver input;
+		calculates delivery time;
+		updates when item is received;
+
+		
