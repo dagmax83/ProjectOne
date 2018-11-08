@@ -21,13 +21,13 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // 2. Button for adding Employees
-$("#add-employee-btn").on("click", function(event) {
+$("#add-order-btn").on("click", function(event) {
   event.preventDefault();
 
   // Grabs user input
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
-  var perscriptionNumber = moment($("#perscription-number").val().trim());
+  var perscriptionNumber = $("#perscription-number").val().trim();
   var pharmAddress = $("#pharmacy-address").val().trim();
 
   // Creates local "temporary" object for holding employee data
@@ -37,9 +37,10 @@ $("#add-employee-btn").on("click", function(event) {
     perscriptionNumber: perscriptionNumber,
     pharmAddress: pharmAddress
   };
+  console.log(newEntry);
 
   // Uploads employee data to the database
-  database.ref().push(newEmp);
+  database.ref().push(newEntry);
   // Logs everything to console
   console.log(newEntry.name);
   console.log(newEntry.deliveryAddress);
