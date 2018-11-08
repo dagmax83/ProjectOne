@@ -16,7 +16,7 @@ We are making a website where users can place prescription order pickups. After 
 
 #### Mission: 
 
-To allow patients/users to recieve medication from pharmacies without leaving their location while monitoring the delivery progress in real time. Also to enlist drivers to deliver said medication to patients/users for compensation. 
+To allow patients/users to receive medication from pharmacies without leaving their location while monitoring the delivery progress in real time. Also to enlist drivers to deliver said medication to patients/users for compensation. 
 
 ### Sketch of Final Product
 
@@ -34,6 +34,6 @@ To allow patients/users to recieve medication from pharmacies without leaving th
 - Review API Doc and make sure it outputs what we are looking for
 - Design mockup for mobile, then desktop layouts.
 - Make task list
-- Implament task manager
+- Implement task manager (Trillo)
 - Assign tasks to each member
 - Begin build
