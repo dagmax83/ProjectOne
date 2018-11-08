@@ -44,7 +44,7 @@
 
         <!-- Current Employees-->
         <div class="card mb-4">
-          <div class="card-header">Current Employees</div>
+          <div class="card-header">Current Orders</div>
           <div class="card-body">
             <table class="table table-sm table-hover" id='employee-table'>
               <thead>
@@ -53,6 +53,8 @@
                   <th scope="col">Delivery Address</th>
                   <th scope="col">Perscription #</th>
                   <th scope="col">Pharmacy Address</th>
+                  <th scope="col">Estimated Time</th>
+                  <th scope="col">Order Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,6 +90,7 @@
                 <label for="rate-input">Pharmacy Address</label>
                 <input class="form-control" id="pharmacy-address" placeholder="100 W Dean Keeton St" type="text">
               </div>
+              
               <button class="btn btn-primary float-right" id="add-order-btn">Submit</button>
             </form>
 
