@@ -39,30 +39,50 @@ $("#add-order-btn").on("click", function(event) {
   };
   console.log(newEntry);
 
-  database.ref("/data").push(newEntry);
+  // Uploads employee data to the database
+  database.ref().push(newEntry);
+  // Logs everything to console
+  console.log(newEntry.name);
+  console.log(newEntry.deliveryAddress);
+  console.log(newEntry.perscriptionNumber);
+  console.log(newEntry.pharmAddress);
+
   alert("Entry successfully added");
+  // Clears all of the text-boxes
   $("#name").val("");
   $("#deliveryAddress").val("");
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
 });
-database.ref("/data").on("child_added", function(childSnapshot) {
+
+// 3. Create Firebase event for adding to the database and a row in the html when a user adds an entry
+$(document).on("click",".pebutton", function() {
+  var el = $(this);
+  console.log(this);
+  console.log(el.text());
+
+  if(el.text() === "processing"){
+    el.text("enroute");
+  } else if(el.text() === "enroute"){
+    el.text("delivered")
+  } else if("delivered"){
+    el.text("processing");
+  }
+
+  // update firebase
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val());
+  // Store everything into a variable.
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
+  var eta = childSnapshot.val().eta;
 
-  var dropdown = 
-  `<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Order Status
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">At Pharmacy</a>
-      <a class="dropdown-item" href="#">On Way</a>
-      <a class="dropdown-item" href="#">Delivered</a>
-    </div>
-  </div>`;
+  var button = `<button class="pebutton btn btn-primary" data-text-swap="enroute">processing</button>`
+
 
   // Create the new row
   var newRow = $("<tr>").append(
@@ -70,34 +90,14 @@ database.ref("/data").on("child_added", function(childSnapshot) {
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
-    $("<td>").text("30 Minutes"),
-    $("<td>").append(dropdown),
+    $("<td>").text(eta),
+    $("<td>").append(button),
   );
+
+
+
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
 
 });
-
-  // Google API
-
-
-  var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
-
-// Performing our AJAX GET request
-$.ajax({
-  url: queryURL,
-  method: "GET"
-})
-  // After the data comes back from the API
-  .then(function(response) {
-    var results = response.rows;
-    console.log(results);
-
-  // display format
-  // code to land respose
-  var tempRes = "ETA = 1:00 pm";
-  console.log(tempRes);
-  
-});  
-
 
