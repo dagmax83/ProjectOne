@@ -92,6 +92,11 @@ $.ajax({
   .then(function(response) {
     var results = response.rows;
     console.log(results);
+
+  // display format
+  // code to land respose
+  var tempRes = "ETA = 1:00 pm";
+  console.log(tempRes);
   
 });  
 
