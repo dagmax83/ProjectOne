@@ -90,13 +90,13 @@ $.ajax({
 })
   // After the data comes back from the API
   .then(function(response) {
-    var results = response.rows;
+    var results = response.rows[0].elements[1].duration.text;
     console.log(results);
 
   // display format
   // code to land respose
   var tempRes = "ETA = 1:00 pm";
-  console.log(tempRes);
+  
   
 });  
 
