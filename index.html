@@ -8,9 +8,11 @@
   <title>Pharmacy Delivery</title>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 
   <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -44,7 +46,7 @@
 
         <!-- Current Employees-->
         <div class="card mb-4">
-          <div class="card-header">Current Employees</div>
+          <div class="card-header">Current Orders</div>
           <div class="card-body">
             <table class="table table-sm table-hover" id='employee-table'>
               <thead>
@@ -53,6 +55,8 @@
                   <th scope="col">Delivery Address</th>
                   <th scope="col">Perscription #</th>
                   <th scope="col">Pharmacy Address</th>
+                  <th scope="col">Estimated Time</th>
+                  <th scope="col">Order Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,6 +92,7 @@
                 <label for="rate-input">Pharmacy Address</label>
                 <input class="form-control" id="pharmacy-address" placeholder="100 W Dean Keeton St" type="text">
               </div>
+              
               <button class="btn btn-primary float-right" id="add-order-btn">Submit</button>
             </form>
 
