@@ -55,7 +55,7 @@ $("#add-order-btn").on("click", function(event) {
   $("#pharmAddress").val("");
 });
 
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
+// 3. Create Firebase event for adding to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot) {
   console.log(childSnapshot.val());
   // Store everything into a variable.
@@ -63,18 +63,10 @@ database.ref().on("child_added", function(childSnapshot) {
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
+  var eta = childSnapshot.val().eta;
 
-  var dropdown = 
-  `<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-  </div>`;
+  var button = `<button class="pebutton btn btn-primary" data-text-swap="Show">processing</button>`
+
 
   // Create the new row
   var newRow = $("<tr>").append(
@@ -82,11 +74,25 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
-    $("<td>").append(dropdown),
+    $("<td>").text(eta),
+    $("<td>").append(button),
   );
+
+  $(".pebutton").on("click", function() {
+    var el = $(this);
+    if (el.text() == el.data("text-swap")) {
+      el.text(el.data("text-original"));
+    } else {
+      el.data("text-original", el.text());
+      el.text(el.data("text-swap"));
+    }
+  });
+
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
+
 });
+
 
 // Example Time Math
 // -----------------------------------------------------------------------------
