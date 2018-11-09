@@ -39,30 +39,30 @@ $("#add-order-btn").on("click", function(event) {
   };
   console.log(newEntry);
 
-  // Uploads employee data to the database
-  database.ref().push(newEntry);
-  // Logs everything to console
-  console.log(newEntry.name);
-  console.log(newEntry.deliveryAddress);
-  console.log(newEntry.perscriptionNumber);
-  console.log(newEntry.pharmAddress);
-
+  database.ref("/data").push(newEntry);
   alert("Entry successfully added");
-  // Clears all of the text-boxes
   $("#name").val("");
   $("#deliveryAddress").val("");
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
 });
-
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-database.ref().on("child_added", function(childSnapshot) {
-  console.log(childSnapshot.val());
-  // Store everything into a variable.
+database.ref("/data").on("child_added", function(childSnapshot) {
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
+
+  var dropdown = 
+  `<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Order Status
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">At Pharmacy</a>
+      <a class="dropdown-item" href="#">On Way</a>
+      <a class="dropdown-item" href="#">Delivered</a>
+    </div>
+  </div>`;
 
   // Create the new row
   var newRow = $("<tr>").append(
@@ -70,15 +70,9 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
+    $("<td>").text("30 Minutes"),
+    $("<td>").append(dropdown),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
 });
-
-// Example Time Math
-// -----------------------------------------------------------------------------
-// Assume Employee start date of January 1, 2015
-// Assume current date is March 1, 2016
-
-// We know that this is 15 months.
-// Now we will create code in moment.js to confirm that any attempt we use meets this test case
