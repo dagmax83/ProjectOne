@@ -75,4 +75,24 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
+
 });
+
+  // Google API
+
+
+  var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+
+// Performing our AJAX GET request
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+  // After the data comes back from the API
+  .then(function(response) {
+    var results = response.rows;
+    console.log(results);
+  
+});  
+
+
