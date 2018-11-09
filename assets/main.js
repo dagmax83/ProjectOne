@@ -39,25 +39,14 @@ $("#add-order-btn").on("click", function(event) {
   };
   console.log(newEntry);
 
-  database.ref().push(newEntry);
-  // Logs everything to console
-  console.log(newEntry.name);
-  console.log(newEntry.deliveryAddress);
-  console.log(newEntry.perscriptionNumber);
-  console.log(newEntry.pharmAddress);
-
+  database.ref("/data").push(newEntry);
   alert("Entry successfully added");
-  // Clears all of the text-boxes
   $("#name").val("");
   $("#deliveryAddress").val("");
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
 });
-
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-database.ref().on("child_added", function(childSnapshot) {
-  console.log(childSnapshot.val());
-  // Store everything into a variable.
+database.ref("/data").on("child_added", function(childSnapshot) {
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
