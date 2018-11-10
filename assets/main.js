@@ -75,6 +75,24 @@ database.ref().on("child_added", function(childSnapshot) {
   $("#employee-table > tbody").append(newRow);
 });
 
+// Performing our AJAX GET request
+var delivery = ["ordered", "pickup", "delivered"]
+var eta = $("<p>").text(results);
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+  // After the data comes back from the API
+  .then(function displayETA(response) {
+    
+    // Dago - use resutls for ETA 
+    var results = response.rows[0].elements[1].duration.text;
+    console.log(results);
+    results.append(results);
+  })
+ // your code goes here.
+
 // Example Time Math
 // -----------------------------------------------------------------------------
 // Assume Employee start date of January 1, 2015
