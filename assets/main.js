@@ -37,12 +37,13 @@ $("#add-order-btn").on("click", function(event) {
     perscriptionNumber: perscriptionNumber,
     pharmAddress: pharmAddress
   };
-  console.log(newEntry);
+ // console.log(newEntry);
 
   database.ref("/data").push(newEntry);
   alert("Entry successfully added");
   $("#name").val("");
   $("#deliveryAddress").val("");
+  console.log(deliveryAddress)
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
 });
@@ -90,6 +91,7 @@ $.ajax({
 })
   // After the data comes back from the API
   .then(function(response) {
+    
 
     // Dago - use resutls for ETA 
     var results = response.rows[0].elements[1].duration.text;
