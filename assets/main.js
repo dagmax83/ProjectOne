@@ -91,7 +91,7 @@ $.ajax({
 })
   // After the data comes back from the API
   .then(function(response) {
-    
+    console.log(response);
 
     // Dago - use resutls for ETA 
     var results = response.rows[0].elements[1].duration.text;
