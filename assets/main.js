@@ -81,7 +81,7 @@ database.ref("/data").on("child_added", function(childSnapshot) {
 
   // Google API
 
-
+// api call
   var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
 
 // Performing our AJAX GET request
