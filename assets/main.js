@@ -57,4 +57,113 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
 
+  // Steps to complete:
+
+// 1. Initialize Firebase
+// 2. Create button for adding new employees - then update the html + update the database
+// 3. Create a way to retrieve employees from the employee database.
+// 4. Create a way to calculate the months worked. Using difference between start and current time.
+//    Then use moment.js formatting to set difference in months.
+// 5. Calculate Total billed
+
+// 1. Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDOR8iog9sW68qavqnhEDkj5HrM_bR4_vE",
+  authDomain: "pharmacydelivery-1ff2b.firebaseapp.com",
+  databaseURL: "https://pharmacydelivery-1ff2b.firebaseio.com",
+  projectId: "pharmacydelivery-1ff2b",
+  storageBucket: "pharmacydelivery-1ff2b.appspot.com",
+  messagingSenderId: "666352922440"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+// 2. Button for adding Employees
+$("#add-order-btn").on("click", function(event) {
+  event.preventDefault();
+
+  // Grabs user input
+  var name = $("#name").val().trim();
+  var deliveryAddress = $("#delivery-address").val().trim();
+  var perscriptionNumber = $("#perscription-number").val().trim();
+  var pharmAddress = $("#pharmacy-address").val().trim();
+
+  // Creates local "temporary" object for holding employee data
+  var newEntry = {
+    name: name,
+    deliveryAddress: deliveryAddress,
+    perscriptionNumber: perscriptionNumber,
+    pharmAddress: pharmAddress
+  };
+ // console.log(newEntry);
+
+  database.ref("/data").push(newEntry);
+  alert("Entry successfully added");
+  $("#name").val("");
+  $("#deliveryAddress").val("");
+  console.log(deliveryAddress)
+  $("#perscriptionNumber").val("");
+  $("#pharmAddress").val("");
+});
+database.ref("/data").on("child_added", function(childSnapshot) {
+  var name = childSnapshot.val().name;
+  var deliveryAddress = childSnapshot.val().deliveryAddress;
+  var perscriptionNumber = childSnapshot.val().perscriptionNumber;
+  var pharmAddress = childSnapshot.val().pharmAddress;
+
+  var dropdown = 
+  `<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Order Status
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">At Pharmacy</a>
+      <a class="dropdown-item" href="#">On Way</a>
+      <a class="dropdown-item" href="#">Delivered</a>
+    </div>
+  </div>`;
+
+  // Create the new row
+  var newRow = $("<tr>").append(
+    $("<td>").text(name),
+    $("<td>").text(deliveryAddress),
+    $("<td>").text(perscriptionNumber),
+    $("<td>").text(pharmAddress),
+    $("<td>").text("30 minutes"),
+    $("<td>").append(dropdown),
+  );
+  // Append the new row to the table
+  $("#employee-table > tbody").append(newRow);
+
+});
+
+  // Google API
+
+// api call,
+  var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+
+// Performing our AJAX GET request
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+  // After the data comes back from the API
+  .then(function(results) {
+    console.log(results);
+
+    // Dago - use resutls for ETA 
+    var results = response.rows[0].elements[1].duration.text;
+    console.log(results);
+
+ // your code goes here.
+  $("add-order-btn").click(function(){
+    $("#results").append(results);
+  });
+  
+});  
+
+    // (pharmAddress + deliveryAddress)
+
+
 });
