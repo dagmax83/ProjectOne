@@ -64,7 +64,7 @@ database.ref().on("child_added", function(childSnapshot) {
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
-  // var eta = childsnapshot.val().eta
+  // var text = childsnapshot.val().text
   
   
   // Create the new row
@@ -73,7 +73,7 @@ database.ref().on("child_added", function(childSnapshot) {
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
-    $("<td>").text(eta),
+    // $("<td>").text(text),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
@@ -81,20 +81,24 @@ database.ref().on("child_added", function(childSnapshot) {
 
 // Performing our AJAX GET request
 // var delivery = ["ordered", "pickup", "delivered"]
-var results = response.rows[0].elements[1].duration.text;
-var eta = $("<p>").text(results);
+// var results = response.rows[0].elements[1].duration.text;
+// var eta = $("<p>").text(results);
+var text = "hello";
 
 $.ajax({
   url: queryURL,
-  method: "GET"
+  method: "GET",
 })
   // After the data comes back from the API
   .then(function() {
+    $("add-order-btn").click(functon())
+        append(text);
+    });
     
     // Dago - use resutls for ETA var results = response.rows[0].elements[1].duration.text;
-    console.log(eta);
-    results.append(eta);
-  })
+    // console.log(eta);
+    // results.append(eta);
+  
  // your code goes here.
   //  $(deliveryAddress + pharmAddress)
 // Example Time Math
