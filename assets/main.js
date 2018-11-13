@@ -53,6 +53,7 @@ $("#add-order-btn").on("click", function(event) {
   $("#deliveryAddress").val("");
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
+  // $("#eta").val("");
 });
 
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
@@ -63,13 +64,16 @@ database.ref().on("child_added", function(childSnapshot) {
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
-
+  // var eta = childsnapshot.val().eta
+  
+  
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
+    $("<td>").text(eta),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
@@ -85,10 +89,10 @@ $.ajax({
   method: "GET"
 })
   // After the data comes back from the API
-  .then(function(results) {
+  .then(function() {
     
     // Dago - use resutls for ETA var results = response.rows[0].elements[1].duration.text;
-    console.log(etaresults);
+    console.log(eta);
     results.append(eta);
   })
  // your code goes here.
