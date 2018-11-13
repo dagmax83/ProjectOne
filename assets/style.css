@@ -1,0 +1,11 @@
+tr:nth-child(even) {
+    background: rgb(211, 228, 235);
+}
+
+tr:nth-child(odd) {
+    background: #FFF;
+}
+
+body {
+    border: 5px solid red;
+}

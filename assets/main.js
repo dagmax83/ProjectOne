@@ -28,51 +28,33 @@ $("#add-order-btn").on("click", function(event) {
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
   var perscriptionNumber = $("#perscription-number").val().trim();
-  var pharmAddress = $("#pharmacy-address").val().trim();
 
   // Creates local "temporary" object for holding employee data
   var newEntry = {
     name: name,
     deliveryAddress: deliveryAddress,
     perscriptionNumber: perscriptionNumber,
-    pharmAddress: pharmAddress
   };
-  console.log(newEntry);
 
   database.ref("/data").push(newEntry);
   alert("Entry successfully added");
   $("#name").val("");
   $("#deliveryAddress").val("");
   $("#perscriptionNumber").val("");
-  $("#pharmAddress").val("");
 });
+
 database.ref("/data").on("child_added", function(childSnapshot) {
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
-  var pharmAddress = childSnapshot.val().pharmAddress;
-
-  var dropdown = 
-  `<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Order Status
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">At Pharmacy</a>
-      <a class="dropdown-item" href="#">On Way</a>
-      <a class="dropdown-item" href="#">Delivered</a>
-    </div>
-  </div>`;
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
-    $("<td>").text(pharmAddress),
-    $("<td>").text("30 Minutes"),
-    $("<td>").append(dropdown),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
+
 });
