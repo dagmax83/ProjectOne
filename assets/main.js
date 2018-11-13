@@ -82,7 +82,7 @@ database.ref().on("child_added", function(childSnapshot) {
 // Performing our AJAX GET request
 // var delivery = ["ordered", "pickup", "delivered"]
 // var results = response.rows[0].elements[1].duration.text;
-// var eta = $("<p>").text(results);
+var eta = $("<p>").text(results);
 var text = "hello";
 
 $.ajax({
