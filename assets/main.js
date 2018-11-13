@@ -56,6 +56,7 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
+
 });
 
 
