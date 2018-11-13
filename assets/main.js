@@ -37,74 +37,69 @@ $("#add-order-btn").on("click", function(event) {
     perscriptionNumber: perscriptionNumber,
     pharmAddress: pharmAddress
   };
-  console.log(newEntry);
+ // console.log(newEntry);
 
-  // Uploads employee data to the database
-  database.ref().push(newEntry);
-  // Logs everything to console
-  console.log(newEntry.name);
-  console.log(newEntry.deliveryAddress);
-  console.log(newEntry.perscriptionNumber);
-  console.log(newEntry.pharmAddress);
-
+  database.ref("/data").push(newEntry);
   alert("Entry successfully added");
-  // Clears all of the text-boxes
   $("#name").val("");
   $("#deliveryAddress").val("");
+  console.log(deliveryAddress)
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
-  // $("#eta").val("");
 });
-
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-database.ref().on("child_added", function(childSnapshot) {
-  console.log(childSnapshot.val());
-  // Store everything into a variable.
+database.ref("/data").on("child_added", function(childSnapshot) {
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
-  // var text = childsnapshot.val().text
-  
-  
+
+  var dropdown = 
+  `<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Order Status
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">At Pharmacy</a>
+      <a class="dropdown-item" href="#">On Way</a>
+      <a class="dropdown-item" href="#">Delivered</a>
+    </div>
+  </div>`;
+
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
-    // $("<td>").text(text),
+    $("<td>").text("30 Minutes"),
+    $("<td>").append(dropdown),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
+
 });
 
-// Performing our AJAX GET request
-// var delivery = ["ordered", "pickup", "delivered"]
-// var results = response.rows[0].elements[1].duration.text;
-var eta = $("<p>").text(results);
-var text = "hello";
+  // Google API
 
+// api call,
+  var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+
+// Performing our AJAX GET request
 $.ajax({
   url: queryURL,
-  method: "GET",
+  method: "GET"
 })
   // After the data comes back from the API
-  .then(function() {
-    $("add-order-btn").click(functon())
-        append(text);
-    });
-    
-    // Dago - use resutls for ETA var results = response.rows[0].elements[1].duration.text;
-    // console.log(eta);
-    // results.append(eta);
-  
- // your code goes here.
-  //  $(deliveryAddress + pharmAddress)
-// Example Time Math
-// -----------------------------------------------------------------------------
-// Assume Employee start date of January 1, 2015
-// Assume current date is March 1, 2016
+  .then(function(response) {
+    console.log(response);
 
-// We know that this is 15 months.
-// Now we will create code in moment.js to confirm that any attempt we use meets this test case
+    // Dago - use resutls for ETA 
+    var results = response.rows[0].elements[1].duration.text;
+    console.log(results);
+
+ // your code goes here.
+  
+  
+});  
+
+
