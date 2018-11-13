@@ -88,7 +88,7 @@ $.ajax({
   .then(function(results) {
     
     // Dago - use resutls for ETA var results = response.rows[0].elements[1].duration.text;
-    console.log(results);
+    console.log(etaresults);
     results.append(eta);
   })
  // your code goes here.
