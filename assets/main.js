@@ -71,7 +71,7 @@ database.ref("/data").on("child_added", function(childSnapshot) {
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
-    $("<td>").text("30 Minutes"),
+    $("<td>").text("30 minutes"),
     $("<td>").append(dropdown),
   );
   // Append the new row to the table
@@ -90,16 +90,19 @@ $.ajax({
   method: "GET"
 })
   // After the data comes back from the API
-  .then(function(response) {
-    console.log(response);
+  .then(function(results) {
+    console.log(results);
 
     // Dago - use resutls for ETA 
     var results = response.rows[0].elements[1].duration.text;
     console.log(results);
 
  // your code goes here.
-  
+  $("add-order-btn").click(function(){
+    $("#results").append(results);
+  });
   
 });  
 
+    // (pharmAddress + deliveryAddress)
 
