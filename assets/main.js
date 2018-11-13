@@ -28,61 +28,59 @@ $("#add-order-btn").on("click", function(event) {
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
   var perscriptionNumber = $("#perscription-number").val().trim();
-  var pharmAddress = $("#pharmacy-address").val().trim();
 
   // Creates local "temporary" object for holding employee data
   var newEntry = {
     name: name,
     deliveryAddress: deliveryAddress,
     perscriptionNumber: perscriptionNumber,
-    pharmAddress: pharmAddress
   };
- // console.log(newEntry);
 
   database.ref("/data").push(newEntry);
   alert("Entry successfully added");
   $("#name").val("");
   $("#deliveryAddress").val("");
-  console.log(deliveryAddress)
   $("#perscriptionNumber").val("");
-  $("#pharmAddress").val("");
 });
+
 database.ref("/data").on("child_added", function(childSnapshot) {
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
-  var pharmAddress = childSnapshot.val().pharmAddress;
-
-  var dropdown = 
-  `<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Order Status
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">At Pharmacy</a>
-      <a class="dropdown-item" href="#">On Way</a>
-      <a class="dropdown-item" href="#">Delivered</a>
-    </div>
-  </div>`;
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
     $("<td>").text(deliveryAddress),
     $("<td>").text(perscriptionNumber),
-    $("<td>").text(pharmAddress),
-    $("<td>").text("30 Minutes"),
-    $("<td>").append(dropdown),
   );
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
-
 });
 
-  // Google API
+
+  //Foursquare API
+  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=Austin,TX&query=Pharmacy&limit=1&v=20181113";
+  
+  $.ajax({
+    url: jqueryFS,
+    method: "GET"
+  }).then(function(responseFS) {
+     // console.log(responseFS);
+  
+      
+      var resultsFS = responseFS;
+      console.log(resultsFS);
+  
+   // your code goes here.
+    
+    
+  }); 
+
+
 
 // api call,
-  var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
 
 // Performing our AJAX GET request
 $.ajax({
@@ -91,15 +89,13 @@ $.ajax({
 })
   // After the data comes back from the API
   .then(function(response) {
-    console.log(response);
+    // console.log(response);
 
     // Dago - use resutls for ETA 
     var results = response.rows[0].elements[1].duration.text;
-    console.log(results);
+    // console.log(results);
 
- // your code goes here.
+ //your code goes here.
   
   
-});  
-
-
+}); 
