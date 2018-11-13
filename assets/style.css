@@ -23,3 +23,7 @@ body {
     height:100%;
     overflow:auto;
 }
+
+.btn {
+    border-radius: 1.25rem;
+}
