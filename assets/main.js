@@ -167,3 +167,45 @@ $.ajax({
 
 
 });
+
+
+  //Foursquare API
+  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=Austin,TX&query=Pharmacy&limit=1&v=20181113";
+  
+  $.ajax({
+    url: jqueryFS,
+    method: "GET"
+  }).then(function(responseFS) {
+     // console.log(responseFS);
+  
+      
+      var resultsFS = responseFS;
+      console.log(resultsFS);
+  
+   // your code goes here.
+    
+    
+  }); 
+
+
+
+// api call,
+var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+
+// Performing our AJAX GET request
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+  // After the data comes back from the API
+  .then(function(response) {
+    // console.log(response);
+
+    // Dago - use resutls for ETA 
+    var results = response.rows[0].elements[1].duration.text;
+    // console.log(results);
+
+ //your code goes here.
+  
+  
+}); 
