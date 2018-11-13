@@ -1,0 +1,29 @@
+tr:nth-child(even) {
+    background: rgb(211, 228, 235);
+}
+
+tr:nth-child(odd) {
+    background: #FFF;
+}
+
+body {
+    border: 5px solid red;
+}
+
+
+.test {
+    min-height: 42rem;
+}
+
+/* table {
+    overflow: scroll;
+    height:100%;
+} */
+#employee-table{
+    height:100%;
+    overflow:auto;
+}
+
+.btn {
+    border-radius: 1.25rem;
+}
