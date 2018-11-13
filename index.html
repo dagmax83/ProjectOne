@@ -24,7 +24,7 @@
     #employee-table th,
     td {
       display: inline-block;
-      width: 16.575%;
+      width: 10%;
     }
   </style>
 </head>
@@ -53,6 +53,9 @@
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Delivery Address</th>
+                  <th scope="col">Delivery City</th>
+                  <th scope="col">Delivery State</th>
+                  <th scope="col">Delivery Zip</th>
                   <th scope="col">Perscription #</th>
                   <th scope="col">Pharmacy Address</th>
                   <th scope="col">Estimated Time</th>
@@ -71,28 +74,43 @@
       <div class="col-md-12">
         <!-- Add Employee  -->
         <div class="card mb-4">
-          <div class="card-header">Add Employee</div>
+          <div class="card-header">Add Prescription</div>
           <div class="card-body">
 
             <!-- Entry Form -->
             <form>
               <div class="form-group">
-                <label for="employee-name-input">Name</label>
-                <input class="form-control" id="name" placeholder="John Smith" type="text">
+
+                <input class="form-control" id="name" placeholder="Name" type="text">
               </div>
               <div class="form-group">
-                <label for="role-input">Delivery Address</label>
-                <input class="form-control" id="delivery-address" placeholder="1234 Q St" type="text">
+
+                <input class="form-control" id="delivery-address" placeholder="Street" type="text">
               </div>
               <div class="form-group">
-                <label for="start-input">Perscription #</label>
-                <input class="form-control" id="perscription-number" placeholder="123456" type="text">
+
+                <input class="form-control" id="delivery-city" placeholder="City" type="text">
               </div>
               <div class="form-group">
-                <label for="rate-input">Pharmacy Address</label>
-                <input class="form-control" id="pharmacy-address" placeholder="100 W Dean Keeton St" type="text">
+
+                <input class="form-control" id="delivery-state" placeholder="State" type="text">
               </div>
+              <div class="form-group">
+
+                <input class="form-control" id="delivery-zip" placeholder="Zip" type="text">
+              </div>
+              <div class="form-group">
+
+                <input class="form-control" id="perscription-number" placeholder="Prescription Number" type="text">
+              </div>
+<<<<<<< Updated upstream
               
+=======
+              <div class="form-group">
+
+                <input class="form-control" id="pharmacy-address" placeholder="Pharmacy Address" type="text">
+              </div>
+>>>>>>> Stashed changes
               <button class="btn btn-primary float-right" id="add-order-btn">Submit</button>
             </form>
 

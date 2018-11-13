@@ -27,6 +27,9 @@ $("#add-order-btn").on("click", function(event) {
   // Grabs user input
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
+  var deliveryCity = $("#delivery-city").val().trim();
+  var deliveryState = $("#delivery-state").val().trim();
+  var deliveryZip = $("#delivery-zip").val().trim();
   var perscriptionNumber = $("#perscription-number").val().trim();
   var pharmAddress = $("#pharmacy-address").val().trim();
 
@@ -34,8 +37,13 @@ $("#add-order-btn").on("click", function(event) {
   var newEntry = {
     name: name,
     deliveryAddress: deliveryAddress,
+    deliveryCity: deliveryCity,
+    deliveryState: deliveryState,
+    deliveryZip: deliveryZip,
     perscriptionNumber: perscriptionNumber,
-    pharmAddress: pharmAddress
+    pharmAddress: pharmAddress,
+ 
+
   };
   console.log(newEntry);
 
@@ -44,13 +52,20 @@ $("#add-order-btn").on("click", function(event) {
   // Logs everything to console
   console.log(newEntry.name);
   console.log(newEntry.deliveryAddress);
+  console.log(newEntry.deliveryCity);
+  console.log(newEntry.deliveryState);
+  console.log(newEntry.deliveryZip);
   console.log(newEntry.perscriptionNumber);
   console.log(newEntry.pharmAddress);
+  
 
   alert("Entry successfully added");
   // Clears all of the text-boxes
   $("#name").val("");
   $("#deliveryAddress").val("");
+  $("#deliveryCity").val("");
+  $("#deliveryState").val("");
+  $("#deliveryZip").val("");
   $("#perscriptionNumber").val("");
   $("#pharmAddress").val("");
 });
@@ -61,17 +76,27 @@ database.ref().on("child_added", function(childSnapshot) {
   // Store everything into a variable.
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
+  var deliveryCity = childSnapshot.val().deliveryCity;
+  var deliveryState = childSnapshot.val().deliveryState;
+  var deliveryZip = childSnapshot.val().deliveryZip;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
   var pharmAddress = childSnapshot.val().pharmAddress;
   var eta = childSnapshot.val().eta;
 
+<<<<<<< Updated upstream
   var button = `<button class="pebutton btn btn-primary" data-text-swap="Show">processing</button>`
 
+=======
+  var button = `<button class="pebutton btn btn-primary" data-text-swap="enroute">processing</button>`
+>>>>>>> Stashed changes
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
     $("<td>").text(deliveryAddress),
+    $("<td>").text(deliveryCity),
+    $("<td>").text(deliveryState),
+    $("<td>").text(deliveryZip),
     $("<td>").text(perscriptionNumber),
     $("<td>").text(pharmAddress),
     $("<td>").text(eta),
