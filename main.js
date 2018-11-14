@@ -43,6 +43,11 @@ $("#add-order-btn").on("click", function(event) {
   $("#perscriptionNumber").val("");
 });
 
+$("#name").val("");
+$("#deliveryAddress").val("");
+$("#perscriptionNumber").val("");
+});
+
 database.ref("/data").on("child_added", function(childSnapshot) {
   var name = childSnapshot.val().name;
   var deliveryAddress = childSnapshot.val().deliveryAddress;
