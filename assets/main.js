@@ -58,3 +58,33 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   $("#employee-table > tbody").append(newRow);
 
 });
+
+$("#status-btn").on("click", function(event) {
+  event.preventDefault();
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes();
+  var hours = today.getHours();
+  var minutes = today.getMinutes();
+  
+  var eta = hours + ":" + parseInt(today.getMinutes() + 10);
+
+  var el = $(this);
+  $("#time").text(time);
+
+
+
+$("#eta").text(eta);
+ 
+  if(el.text() === "Processing"){
+    el.text("Enroute");
+    $("#status").text("Enroute");
+  } else if(el.text() === "Enroute"){
+    el.text("Delivered");
+    $("#status").text("Delivered");
+  } else if("Delivered"){
+    el.text("Processing");
+    $("#status").text("Processing");
+  }
+ 
+  // update firebase
+ });
