@@ -10,6 +10,14 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var originLongLat = {};
+var city = "";
+var state = "";
+var resultsFSLat = "";
+var resultsFSLong = "";
+var resultsGeoLat = "";
+var resultsGeoLong = "";
+var dist = "";
+var loc = "";
 
 $("#add-order-btn").on("click", function(event) {
   event.preventDefault();
@@ -22,8 +30,6 @@ $("#add-order-btn").on("click", function(event) {
   var deliveryState = $("#state").val().trim();
   var deliveryZip  = $("#zip-code").val().trim();
   var perscriptionNumber = $("#perscription-number").val().trim();
-  googleApiCall();
-
   var newEntry = {
     name: name,
     deliveryAddress: deliveryAddress,
@@ -46,26 +52,24 @@ $.ajax({
   method: "GET"
 })
   .then(function(response) {
-    var resultsGeoLat = response.results[0].geometry.location.lat;
-    var resultsGeoLong = response.results[0].geometry.location.lng;
+    resultsGeoLat = response.results[0].geometry.location.lat;
+    resultsGeoLong = response.results[0].geometry.location.lng;
     originLongLat.lat = resultsGeoLat;
     originLongLat.lng = resultsGeoLong;
-   
-    console.log(originLongLat,originLongLat.lng);
-    console.log("Number 2");
     fourSquareCall();
 }); 
 
  function fourSquareCall() {
       var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&ll=" + originLongLat.lat + "," + originLongLat.lng + "1&query=Pharmacy&limit=1&v=20181113";
-
       $.ajax({
         url: jqueryFS,
         method: "GET"
       }).then(function(responseFS) {
 
-          var resultsFSLat = responseFS.response.venues[0].location.labeledLatLngs[0].lat;
-          var resultsFSLong = responseFS.response.venues[0].location.labeledLatLngs[0].lng;
+        console.log(responseFS);
+           resultsFSLat = responseFS.response.venues[0].location.labeledLatLngs[0].lat;
+           resultsFSLong = responseFS.response.venues[0].location.labeledLatLngs[0].lng;
+           $("#pharm-address").text(responseFS.response.venues[0].location.address);
 
       }); 
     }
@@ -86,14 +90,27 @@ database.ref("/data").on("child_added", function(childSnapshot) {
 
 $("#status-btn").on("click", function(event) {
   event.preventDefault();
-  var today = new Date();
-  var time = today.getHours() + today.getMinutes();
-  today.setMinutes(today.getMinutes() + dist);
-  var eta = today.getHours() + ":" + today.getMinutes();
-  var el = $(this);
-  $("#time").text(time);
+  googleApiCall();
 
-$("#eta").text(eta);
+
+ });
+function googleApiCall () {
+      var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + resultsFSLat + "," + resultsFSLong + "&destinations="+ originLongLat.lat + ","+ originLongLat.lng +"&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(results) {
+
+          var today = new Date();
+          var time = today.getHours() + ":" + today.getMinutes();
+          dist = results.rows[0].elements[0].duration.text;
+          $("#time").text(time);
+          $("#eta").text(dist);
+
+
+  
+  var el = $(this);
  
   if(el.text() === "Processing"){
     el.text("Enroute");
@@ -105,22 +122,7 @@ $("#eta").text(eta);
     el.text("Processing");
     $("#status").text("Processing");
   }
- });
 
-function googleApiCall () {
-      var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=41.43206,-81.38992&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
-
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-
-        .then(function(results) {
-          var dist = results.rows[0].elements[0].duration.text;
-          $("#eta").text(dist);    
-          $("add-order-btn").click(function(){
-          $("#results").append(results);
-        });
       });     
 
     };
