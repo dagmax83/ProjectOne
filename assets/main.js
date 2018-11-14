@@ -48,6 +48,10 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   var deliveryAddress = childSnapshot.val().deliveryAddress;
   var perscriptionNumber = childSnapshot.val().perscriptionNumber;
 
+  
+
+ 
+
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(name),
@@ -58,7 +62,23 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   $("#employee-table > tbody").append(newRow);
 
 });
+var button = `<button id="pebutton" class="btn btn-primary float-right" data-text-swap="enroute">processing</button>`
 
+$(document).on("click","#pebutton", function() {
+  var el = $(this);
+  console.log(this);
+  console.log(el.text());
+
+  if(el.text() === "processing"){
+    el.text("enroute");
+  } else if(el.text() === "enroute"){
+    el.text("delivered")
+  } else if("delivered"){
+    el.text("processing");
+  }
+
+  // update firebase
+});
 
   //Foursquare API
   var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=Austin,TX&query=Pharmacy&limit=1&v=20181113";
