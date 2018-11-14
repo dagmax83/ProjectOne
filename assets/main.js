@@ -25,6 +25,7 @@ $("#add-order-btn").on("click", function(event) {
 
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
+
   var deliveryCity =  $("#city").val().trim();
   var deliveryState = $("#state").val().trim();
   var deliveryZip  = $("#zip-code").val().trim();
@@ -36,6 +37,7 @@ $("#add-order-btn").on("click", function(event) {
   };
 
   database.ref("/data").push(newEntry);
+
   $("#name").val("");
   $("#delivery-address").val("");
   $("#perscriptionNumber").val("");
@@ -44,6 +46,7 @@ $("#add-order-btn").on("click", function(event) {
   $("#zip-code").val("");
 
   var queryURLGeo = "https://maps.googleapis.com/maps/api/geocode/json?address=" + deliveryAddress + ",+" + deliveryCity + ",+" + deliveryState + "&key=AIzaSyCUfu2Dg7gUf6OwezymCUo-QmxOC47Bh2k";
+
 $.ajax({
   url: queryURLGeo,
   method: "GET"
@@ -62,10 +65,12 @@ $.ajax({
         url: jqueryFS,
         method: "GET"
       }).then(function(responseFS) {
+
         console.log(responseFS);
            resultsFSLat = responseFS.response.venues[0].location.labeledLatLngs[0].lat;
            resultsFSLong = responseFS.response.venues[0].location.labeledLatLngs[0].lng;
            $("#pharm-address").text(responseFS.response.venues[0].location.address);
+
       }); 
     }
 });
@@ -117,5 +122,7 @@ function googleApiCall () {
     el.text("Processing");
     $("#status").text("Processing");
   }
+
       });     
+
     };
