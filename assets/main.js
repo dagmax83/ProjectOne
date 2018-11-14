@@ -27,6 +27,9 @@ $("#add-order-btn").on("click", function(event) {
   // Grabs user input
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
+  var deliveryCity =  $("#city").val().trim();
+  var deliveryState = $("#state").val().trim();
+  var deliveryZip  = $("#zip-code").val().trim();
   var perscriptionNumber = $("#perscription-number").val().trim();
 
   // Creates local "temporary" object for holding employee data
@@ -37,12 +40,28 @@ $("#add-order-btn").on("click", function(event) {
   };
 
   database.ref("/data").push(newEntry);
-  alert("Entry successfully added");
+  //alert("Entry successfully added");
   $("#name").val("");
   $("#deliveryAddress").val("");
-  console.log(deliveryAddress);
-  console.log("______________________________");
   $("#perscriptionNumber").val("");
+ //Foursquare API
+  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=" + deliveryCity + "+" + deliveryState + "&query=Pharmacy&limit=1&v=20181113";
+
+  $.ajax({
+    url: jqueryFS,
+    method: "GET"
+  }).then(function(responseFS) {
+     // console.log(responseFS);
+  
+      
+      var resultsFS = responseFS.response.venues[0].location;
+      
+      console.log(resultsFS);
+  
+   // your code goes here.
+    
+    
+  }); 
 });
 
 database.ref("/data").on("child_added", function(childSnapshot) {
@@ -61,24 +80,9 @@ database.ref("/data").on("child_added", function(childSnapshot) {
 });
 
 
-  //Foursquare API
-  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=Austin,TX&query=Pharmacy&limit=1&v=20181113";
+ 
   
-  $.ajax({
-    url: jqueryFS,
-    method: "GET"
-  }).then(function(responseFS) {
-     // console.log(responseFS);
-  
-      
-      var resultsFS = responseFS.response.venues[0].location;
-      
-      console.log(resultsFS);
-  
-   // your code goes here.
-    
-    
-  }); 
+
 
 
 
@@ -96,7 +100,7 @@ $.ajax({
 
     // Dago - use resutls for ETA 
     var results = response.rows[0].elements[1].duration.text;
-    // console.log(results);
+    //console.log(results);
 
  //your code goes here.
   
