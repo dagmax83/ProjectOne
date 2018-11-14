@@ -63,39 +63,37 @@ $.ajax({
     var resultsGeoLong = response.results[0].geometry.location.lng;
     originLongLat.lat = resultsGeoLat;
     originLongLat.lng = resultsGeoLong;
-
-    console.log(originLongLat);
-
-}); 
-//console.log(originLongLat);
-console.log("_________________");
-
-//console.log(originLongLat.lat);
- //Foursquare API
-  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=" + deliveryCity + "+" + deliveryState + "&query=Pharmacy&limit=1&v=20181113";
-
-  $.ajax({
-    url: jqueryFS,
-    method: "GET"
-  }).then(function(responseFS) {
-     // console.log(responseFS);
-  
-      // lat output
-      var resultsFSLat = responseFS.response.venues[0].location.labeledLatLngs[0].lat;
-    // long output
-      var resultsFSLong = responseFS.response.venues[0].location.labeledLatLngs[0].lng;
-     
-      originLongLat.lat = resultsFSLat;
-      originLongLat.long =  resultsFSLong;
-      // console.log(resultsFSLat);
-      // console.log(resultsFSLong);
-
    
-   // fs response needs to land in  var origin = {lat, long} to be called by the google api
-    
-    
-  }); 
- 
+    console.log(originLongLat,originLongLat.lng);
+    console.log("Number 2");
+    fourSquareCall();
+}); 
+
+ //Foursquare API
+ function fourSquareCall() {
+      var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&ll=" + originLongLat.lat + "," + originLongLat.lng + "1&query=Pharmacy&limit=1&v=20181113";
+
+      $.ajax({
+        url: jqueryFS,
+        method: "GET"
+      }).then(function(responseFS) {
+        // console.log(responseFS);
+      
+          // lat output
+          var resultsFSLat = responseFS.response.venues[0].location.labeledLatLngs[0].lat;
+        // long output
+          var resultsFSLong = responseFS.response.venues[0].location.labeledLatLngs[0].lng;
+        
+         
+          console.log(resultsFSLat);
+          console.log(resultsFSLong);
+
+      
+      // fs response needs to land in  var origin = {lat, long} to be called by the google api
+        
+        
+      }); 
+    }
 });
 
 database.ref("/data").on("child_added", function(childSnapshot) {
@@ -119,22 +117,24 @@ database.ref("/data").on("child_added", function(childSnapshot) {
 
 
 // api call, needs to take in the FS api output in the query bellow
-var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=41.43206,-81.38992&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
-//origins=41.43206,-81.38992|-33.86748,151.20699
-// Performing our AJAX GET request
-$.ajax({
-  url: queryURL,
-  method: "GET"
-})
-  // After the data comes back from the API
-  .then(function(response) {
-    // console.log(response);
+function googleApiCall () {
+      var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=41.43206,-81.38992&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+      //origins=41.43206,-81.38992|-33.86748,151.20699
+      // Performing our AJAX GET request
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        // After the data comes back from the API
+        .then(function(response) {
+          // console.log(response);
 
-    // Dago - use resutls for ETA 
-    var results = response.rows[0].elements[1].duration.text;
-    //console.log(results);
+          // Dago - use resutls for ETA 
+          var results = response.rows[0].elements[1].duration.text;
+          console.log(results);
 
- //your code goes here.
-  
-  
-}); 
+      //your code goes here.
+        
+        
+      }); 
+    };
