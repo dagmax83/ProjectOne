@@ -16,8 +16,6 @@ var config = {
   storageBucket: "pharmacydelivery-1ff2b.appspot.com",
   messagingSenderId: "666352922440"
 };
-
-var tempAddr = "";
 firebase.initializeApp(config);
 
 var database = firebase.database();
@@ -29,10 +27,7 @@ $("#add-order-btn").on("click", function(event) {
   // Grabs user input
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
-  console.log(deliveryAddress);
   var perscriptionNumber = $("#perscription-number").val().trim();
-  tempAddr = deliveryAddress;
-  console.log(tempAddr);  
 
   // Creates local "temporary" object for holding employee data
   var newEntry = {
@@ -64,13 +59,10 @@ database.ref("/data").on("child_added", function(childSnapshot) {
   // Append the new row to the table
   $("#employee-table > tbody").append(newRow);
 });
-var streetNum = 9218;
-var StreetName = "balcones club dr";
-var city = "Austin";
-var zip = 78750;
+
 
   //Foursquare API
-  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=" + streetNum + "+" + StreetName + "+" + city + "+" + state + "+" + zip + "&query=Pharmacy&limit=1&v=20181113";
+  var jqueryFS = "https://api.foursquare.com/v2/venues/search?client_id=CPMQWA3FSBQ05XME3HFVCNFU0Q2H5IQJFNSTV0M54UZMAKGG&client_secret=P3DFOZPMDTHVLJU5TFJLBRUKL4ZTVNZBW1GYRV3JK4GGBZFM&near=Austin,TX&query=Pharmacy&limit=1&v=20181113";
   
   $.ajax({
     url: jqueryFS,
