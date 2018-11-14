@@ -17,6 +17,7 @@ $("#add-order-btn").on("click", function(event) {
 
   var name = $("#name").val().trim();
   var deliveryAddress = $("#delivery-address").val().trim();
+
   var deliveryCity =  $("#city").val().trim();
   var deliveryState = $("#state").val().trim();
   var deliveryZip  = $("#zip-code").val().trim();
@@ -30,6 +31,7 @@ $("#add-order-btn").on("click", function(event) {
   };
 
   database.ref("/data").push(newEntry);
+
   $("#name").val("");
   $("#delivery-address").val("");
   $("#perscriptionNumber").val("");
@@ -38,6 +40,7 @@ $("#add-order-btn").on("click", function(event) {
   $("#zip-code").val("");
 
   var queryURLGeo = "https://maps.googleapis.com/maps/api/geocode/json?address=" + deliveryAddress + ",+" + deliveryCity + ",+" + deliveryState + "&key=AIzaSyCUfu2Dg7gUf6OwezymCUo-QmxOC47Bh2k";
+
 $.ajax({
   url: queryURLGeo,
   method: "GET"
@@ -60,6 +63,7 @@ $.ajax({
         url: jqueryFS,
         method: "GET"
       }).then(function(responseFS) {
+
           var resultsFSLat = responseFS.response.venues[0].location.labeledLatLngs[0].lat;
           var resultsFSLong = responseFS.response.venues[0].location.labeledLatLngs[0].lng;
 
@@ -102,12 +106,15 @@ $("#eta").text(eta);
     $("#status").text("Processing");
   }
  });
+
 function googleApiCall () {
       var queryURL = "https://cors-ut-bootcamp.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=41.43206,-81.38992&destinations=San+Francisco|Victoria+BC&key=AIzaSyCpuqPaRoQb2Nsuxqyb6ZQtG9uiZdQiRYQ";
+
       $.ajax({
         url: queryURL,
         method: "GET"
       })
+
         .then(function(results) {
           var dist = results.rows[0].elements[0].duration.text;
           $("#eta").text(dist);    
@@ -115,4 +122,5 @@ function googleApiCall () {
           $("#results").append(results);
         });
       });     
+
     };
