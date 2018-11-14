@@ -40,6 +40,8 @@ $("#add-order-btn").on("click", function(event) {
   alert("Entry successfully added");
   $("#name").val("");
   $("#deliveryAddress").val("");
+  console.log(deliveryAddress);
+  console.log("______________________________");
   $("#perscriptionNumber").val("");
 });
 
@@ -69,7 +71,8 @@ database.ref("/data").on("child_added", function(childSnapshot) {
      // console.log(responseFS);
   
       
-      var resultsFS = responseFS;
+      var resultsFS = responseFS.response.venues[0].location;
+      
       console.log(resultsFS);
   
    // your code goes here.
