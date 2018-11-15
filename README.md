@@ -6,11 +6,11 @@ https://zaxblackdragon.github.io/ProjectOne/
 
 ### Team Members
 
-1. Austin Tuwiner - Project Manager, Apis
-2. Dagoberto Guerra - Front End/ Apis 
-3. Zac Seewald - Apis/Front End/ Design Mockups
-4. Chighali - _____
-5. Kenneth Cena - _____
+1. Austin Tuwiner - Front End, API Developer, Designer, Firebase
+2. Dagoberto Guerra - Javascript, API
+3. Zac Seewald - Project manager, Github Master, API Developer
+4. Chighali - API Developer, Javascript
+5. Kenneth Cena - Javascript, Button Functions
 
 ### Project Description
 
@@ -22,20 +22,22 @@ To allow patients/users to receive medication from pharmacies without leaving th
 
 ### Sketch of Final Product
 
-[Sketch One](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage1.jpg)
-[Signature and Passcode Sketch](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage2.jpg)
+![Sketch One](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage1.jpg)
+![Signature and Passcode Sketch](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage2.jpg)
+![Wireframe](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/images/RDX-mobile-wireframe.jpg)
 
 ### APIs to Be Used
-- Google Maps API: to generate delivery time and possibly driver location status with map visual.
-- Slack API: for messaging (user to drive and vice/versa)
-- API for transactional purposes: TBA
+- Google Maps API: to generate delivery time and possibly driver location status with map visual
+- Google GeoLocator: To convert an address to latitude and longitude
+- Foursquare: To find pharmacy near coordinates
 
 ## Rough Breakdown of Task
+- Create wireframe and MVP
 - Initial repo/file setup and git branches
-- Get API Key
+- Get API Keys
+- Project management on Trello
 - Review API Doc and make sure it outputs what we are looking for
-- Design mockup for mobile, then desktop layouts.
-- Make task list
-- Implement task manager (Trillo)
-- Assign tasks to each member
 - Begin build
+- Create front end with Bootstrap and CSS
+- Firebase to store orders
+- Connecting APIs and input fields
