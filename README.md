@@ -20,10 +20,7 @@ We are making a website where users can place prescription order pickups. After 
 
 To allow patients/users to receive medication from pharmacies without leaving their location while monitoring the delivery progress in real time. Also to enlist drivers to deliver said medication to patients/users for compensation. 
 
-### Sketch of Final Product
-
-![Sketch One](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage1.jpg)
-![Signature and Passcode Sketch](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/ProjectImage2.jpg)
+### Wireframe of Final Product
 ![Wireframe](https://github.com/zaxblackdragon/ProjectOne/blob/master/assets/images/RDX-mobile-wireframe.jpg)
 
 ### APIs to Be Used
